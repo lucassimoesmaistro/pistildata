@@ -176,7 +176,17 @@ response:
 ```
 
 # Database Schema
+```c#
+    //todo
+```
 
 # Epics
-
+```c#
+    //todo
+```
 # Code Snipped
+The code I would like to show are my domain classes. I understand that the domain classes should be responsible for their state and for that I use TDD as a development strategy so that I can guarantee that the code meets the rules that were first mapped.
+
+[Domain Class](https://github.com/lucassimoesmaistro/Keezag.HHSurge/blob/master/src/Keezag.HHSurge.Domain/User.cs)
+
+Unfortunately, I cannot present projects that I have developed professionally for obvious reasons of intellectual property and confidentiality, as they are vastly more complex than what I have to show.
