@@ -147,7 +147,7 @@ response:
 PATCH: /customer/{hashencoded}/account/{hashencoded}/transfer
 ```
 
-response:
+payload:
 
 ```json
     {
@@ -168,7 +168,7 @@ response:
 ```http
 POST: /customer/{hashencoded}/account/{hashencoded}/transfer
 ```
-response:
+payload:
 
 ```json
     {
@@ -212,7 +212,7 @@ Considering that every provisioning stack as well as CI/CD are mature enough, th
  - create statement micro front-end 
  - create deposit micro front-end 
  - create withdraw micro front-end 
- 
+
  5. Query Stack
  - create CQRS service
  - define query data
