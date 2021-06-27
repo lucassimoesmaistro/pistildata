@@ -71,28 +71,91 @@ The front-end solution should be divided into a micro front-end orchestrator and
 # Back-End Architecture
 In the backend 5 domains will compose the ecosystem of APIs and a 6th one will work as an anti-corruption layer meeting only the demands to load the Query Stack.
 
+![](./doc/Backend-architecture.png)
+
  1. Person:
  Onboarding process, KYC, segmentation.
 
  2. Account:
  Account management, one customer may have many account in this scenario
 
- 2. Transation:
+ 3. Transation:
  Responsible for the SAGA process of the transfer an asset to another account. 
+
  In this SAGA is necessary check the balance of the source account, check how to exchange source currency to the destination currency, compute fee, the liquidit necessary to make this exchange.
 
 ![](./doc/saga.png)
 
 Another point is the date of the transaction, all date are stores in timestamp type on UTC, but displayed based on the location of the user.
 
+ 4. Currency Exchange:
+ Responsible for the flow, tax, rate, liquidity account and rules to convert a currency in another currency.
+
+ 5. Reconciliation:
+ Responsible for compute the balance and limits for each account based on the transactions.
+
 # HTTP route strategy
+
+ 1. Get Customer Data:
+GET: /customer/{hashencoded}
+
+ 2. Get Customer Accounts:
+GET: /customer/{hashencoded}/account
+
+ 3. Get Customer Account Data:
+GET: /customer/{hashencoded}/account/{hashencoded}
+
+ 4. Get Customer Account Statement:
+GET: /customer/{hashencoded}/account/{hashencoded}/statement
+
+ 5. Get Customer Account Deposit Data:
+GET: /customer/{hashencoded}/account/{hashencoded}/Deposit
+
+ 6. Get Initial Transfer Data:
+GET: /customer/{hashencoded}/account/{hashencoded}/transfer
+response:
+
+    {
+        "balances": [
+            {
+                "currency": "USD", "amount": 100.00
+            },
+            {
+                "currency": "CAD", "amount": 100.00
+            }
+        ]
+    }
+
+ 7. Validate exchange is possible:
+PATCH: /customer/{hashencoded}/account/{hashencoded}/transfer
+response:
+
+    {
+        "op": "exchange",
+        "path": "",
+        "value":{
+            "transaction": {
+                "currencySource": "USD",
+                "currencyDestionation": "USD",
+                "amount": 100.00,
+            }
+        }
+    }
+
+
+ 8. Create a Transfer:
+POST: /customer/{hashencoded}/account/{hashencoded}/transfer
+response:
+
+    {
+        "currencySource": "USD",
+        "accountDestionation": "e4d539db-c22f-493c-a4df-456f3798b023",
+        "amount": 100.00,
+    }
+
 
 # Database Schema
 
 # Epics
 
 # Code Snipped
-
-
-## UML diagrams
-```
