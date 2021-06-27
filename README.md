@@ -97,22 +97,34 @@ Another point is the date of the transaction, all date are stores in timestamp t
 # HTTP route strategy
 
  1. Get Customer Data:
+```http
 GET: /customer/{hashencoded}
+```
 
  2. Get Customer Accounts:
+```http
 GET: /customer/{hashencoded}/account
+```
 
  3. Get Customer Account Data:
+```http
 GET: /customer/{hashencoded}/account/{hashencoded}
+```
 
  4. Get Customer Account Statement:
+```http
 GET: /customer/{hashencoded}/account/{hashencoded}/statement
+```
 
  5. Get Customer Account Deposit Data:
+```http
 GET: /customer/{hashencoded}/account/{hashencoded}/Deposit
+```
 
  6. Get Initial Transfer Data:
+```http
 GET: /customer/{hashencoded}/account/{hashencoded}/transfer
+```
 response:
 ```json
     {
@@ -128,7 +140,10 @@ response:
 ```
 
  7. Validate exchange is possible:
+```http
 PATCH: /customer/{hashencoded}/account/{hashencoded}/transfer
+```
+
 response:
 
 ```json
@@ -146,7 +161,10 @@ response:
 ```
 
  8. Create a Transfer:
+
+```http
 POST: /customer/{hashencoded}/account/{hashencoded}/transfer
+```
 response:
 
 ```json
