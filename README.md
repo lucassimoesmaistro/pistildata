@@ -11,3 +11,64 @@ For databases, the strategy is a combination of relational databases for each mi
 ![](./doc/architecture.png)
 
 # User Experience
+
+The application aims to provide quick access to features.
+
+ 1. Main Page
+![](./doc/wireframes/wireframe_main.png)
+
+ 2. Deposit
+![](./doc/wireframes/wireframe_deposit.png)
+
+ 3. Withdraw
+![](./doc/wireframes/wireframe_withdraw.png)
+ 
+ 4. Transfer
+![](./doc/wireframes/wireframe_transfer.png)
+ 
+ 5. Statement
+![](./doc/wireframes/wireframe_statement.png)
+
+# Front-End Macro Architecture
+
+The front-end solution should be divided into a micro front-end orchestrator and the micro front-ends that will compose the SPA application.
+
+ 1. Orchestrator
+ - verticalComponent: spot for menu
+ - horizontalComponent: spot for breadcrumb and header
+ - mainComponent: spot for render micro front-ends
+
+ 2. Menu (Micro Front-end)
+ - itemComponent
+ - listItemsComponent
+
+ 3. Statement (Micro Front-end)
+ - itemComponent
+ - listItemsComponent
+ - filterComponent
+
+ 4. Deposit (Micro Front-end)
+ - qrCodeComponent
+ - dataComponent
+
+ 5. Withdraw (Micro Front-end)
+ - qrCodeComponent
+ - dataComponent
+ - cameraComponent
+ - amountComponent
+
+ 5. Tranfer (Micro Front-end)
+ - balanceComponent
+ - fromComponent (must include balanceComponent)
+ - toComponent
+ - confirmationComponent
+
+# Back-End Architecture
+
+# HTTP route strategy
+
+# Database Schema
+
+# Epics
+
+# Code Snipped
