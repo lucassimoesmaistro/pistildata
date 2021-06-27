@@ -80,18 +80,9 @@ In the backend 5 domains will compose the ecosystem of APIs and a 6th one will w
  2. Transation:
  Responsible for the SAGA process of the transfer an asset to another account. 
  In this SAGA is necessary check the balance of the source account, check how to exchange source currency to the destination currency, compute fee, the liquidit necessary to make this exchange.
- ```mermaid
-graph LR
-A((Validate)) --> B{Check Balance}
-B -- Enough --> C{Currencies is convertible}
-B --> D((Finish Saga))
-C -- Yes --> E[Start Saga]
-C -- No --> D((Finish Saga))
-E[Start Saga] --> F[Registry Statement]
-E[Start Saga] --> G[Exchange Currency]
-G[Exchange Currency] --> H[Complete Transaction]
-H[Complete Transaction] --> I((Finish Saga))
-```
+
+![](./doc/saga.png)
+
 Another point is the date of the transaction, all date are stores in timestamp type on UTC, but displayed based on the location of the user.
 
 # HTTP route strategy
@@ -104,27 +95,4 @@ Another point is the date of the transaction, all date are stores in timestamp t
 
 
 ## UML diagrams
-
-You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
-
-```mermaid
-sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
-```
-
-And this will produce a flow chart:
-
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
 ```
