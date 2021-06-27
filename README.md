@@ -15,7 +15,7 @@ For databases, the strategy is a combination of relational databases for each mi
 The application aims to provide quick access to features.
 
  1. Main Page
- 
+
 ![](./doc/wireframes/wireframe_main.PNG)
 
  2. Deposit
@@ -69,6 +69,30 @@ The front-end solution should be divided into a micro front-end orchestrator and
  - confirmationComponent
 
 # Back-End Architecture
+In the backend 5 domains will compose the ecosystem of APIs and a 6th one will work as an anti-corruption layer meeting only the demands to load the Query Stack.
+
+ 1. Person:
+ Onboarding process, KYC, segmentation.
+
+ 2. Account:
+ Account management, one customer may have many account in this scenario
+
+ 2. Transation:
+ Responsible for the SAGA process of the transfer an asset to another account. 
+ In this SAGA is necessary check the balance of the source account, check how to exchange source currency to the destination currency, compute fee, the liquidit necessary to make this exchange.
+ ```mermaid
+graph LR
+A((Validate)) --> B{Check Balance}
+B -- Enough --> C{Currencies is convertible}
+B --> D((Finish Saga))
+C -- Yes --> E[Start Saga]
+C -- No --> D((Finish Saga))
+E[Start Saga] --> F[Registry Statement]
+E[Start Saga] --> G[Exchange Currency]
+G[Exchange Currency] --> H[Complete Transaction]
+H[Complete Transaction] --> I((Finish Saga))
+```
+Another point is the date of the transaction, all date are stores in timestamp type on UTC, but displayed based on the location of the user.
 
 # HTTP route strategy
 
