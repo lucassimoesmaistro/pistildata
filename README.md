@@ -114,7 +114,7 @@ GET: /customer/{hashencoded}/account/{hashencoded}/Deposit
  6. Get Initial Transfer Data:
 GET: /customer/{hashencoded}/account/{hashencoded}/transfer
 response:
-
+```json
     {
         "balances": [
             {
@@ -125,11 +125,13 @@ response:
             }
         ]
     }
+```
 
  7. Validate exchange is possible:
 PATCH: /customer/{hashencoded}/account/{hashencoded}/transfer
 response:
 
+```json
     {
         "op": "exchange",
         "path": "",
@@ -141,18 +143,19 @@ response:
             }
         }
     }
-
+```
 
  8. Create a Transfer:
 POST: /customer/{hashencoded}/account/{hashencoded}/transfer
 response:
 
+```json
     {
         "currencySource": "USD",
         "accountDestionation": "e4d539db-c22f-493c-a4df-456f3798b023",
         "amount": 100.00,
     }
-
+```
 
 # Database Schema
 
