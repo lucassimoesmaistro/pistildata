@@ -47,22 +47,25 @@ The front-end solution should be divided into a micro front-end orchestrator and
  - itemComponent
  - listItemsComponent
 
- 3. Statement (Micro Front-end)
+ 3. Main (Micro Front-end)
+ - balanceComponent
+
+ 4. Statement (Micro Front-end)
  - itemComponent
  - listItemsComponent
  - filterComponent
 
- 4. Deposit (Micro Front-end)
+ 5. Deposit (Micro Front-end)
  - qrCodeComponent
  - dataComponent
 
- 5. Withdraw (Micro Front-end)
+ 6. Withdraw (Micro Front-end)
  - qrCodeComponent
  - dataComponent
  - cameraComponent
  - amountComponent
 
- 5. Tranfer (Micro Front-end)
+ 7. Tranfer (Micro Front-end)
  - balanceComponent
  - fromComponent (must include balanceComponent)
  - toComponent
@@ -176,14 +179,45 @@ response:
 ```
 
 # Database Schema
-```c#
-    //todo
-```
+
+Each microservice has a small set of tables that serve its delimited context, its relationship occurs through the identifiers of the aggregation root of the context that supports it. An example is the person's Id that must be associated with each account that he/she has, and there is no relationship in the traditional format using foreign keys.
+To provide data quickly, without relying on consulting several microservices at all times, based on certain events, a recording subscription in the non-normalized base will persist in order to meet the main queries. aiming for scalability I chose CosmosDB, but nothing prevents data that will provide sufficient structure for an ETL process to be also registered in relational databases.
+
+![](./doc/database-macro.png)
 
 # Epics
-```c#
-    //todo
-```
+
+Considering that every provisioning stack as well as CI/CD are mature enough, the focus of these epics are product-related only.
+ 
+ 1. Micro front-end Orchestrator
+ - create menu micro front-end
+ - create main micro front-end
+ 
+ 2. Exchange
+ - using mocks create a process to exchange currency
+ - create integration tests to validate the dependency services like exchange rate service
+ - load test
+ 3. Transaction
+
+ - define integration tests for ui get balance
+ - create mock services to provide information for ui
+ - create transfer micro front-end 
+ - create balance component
+ - create from component
+ - create to component
+ - create confirmation component
+ - Transfer Saga (including revert process)
+
+ 4. Person and Account
+ - create statement micro front-end 
+ - create deposit micro front-end 
+ - create withdraw micro front-end 
+ 
+ 5. Query Stack
+ - create CQRS service
+ - define query data
+ - implement subscription for registry query data
+
 # Code Snipped
 The code I would like to show are my domain classes. I understand that the domain classes should be responsible for their state and for that I use TDD as a development strategy so that I can guarantee that the code meets the rules that were first mapped.
 
