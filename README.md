@@ -15,19 +15,19 @@ For databases, the strategy is a combination of relational databases for each mi
 The application aims to provide quick access to features.
 
  1. Main Page
-![](./doc/wireframes/wireframe_main.png)
+![](./doc/wireframes/wireframe_main.PNG)
 
  2. Deposit
-![](./doc/wireframes/wireframe_deposit.png)
+![](./doc/wireframes/wireframe_deposit.PNG)
 
  3. Withdraw
-![](./doc/wireframes/wireframe_withdraw.png)
+![](./doc/wireframes/wireframe_withdraw.PNG)
  
  4. Transfer
-![](./doc/wireframes/wireframe_transfer.png)
+![](./doc/wireframes/wireframe_transfer.PNG)
  
  5. Statement
-![](./doc/wireframes/wireframe_statement.png)
+![](./doc/wireframes/wireframe_statement.PNG)
 
 # Front-End Macro Architecture
 
